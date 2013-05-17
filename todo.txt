@@ -1,0 +1,8 @@
+Patterns to cover:
+
+* Adapter
+* Facade
+* Flyweight
+* Command
+* Abstract factory
+* Composition
