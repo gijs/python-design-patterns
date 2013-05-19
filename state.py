@@ -9,17 +9,23 @@ object will appear to change its class.
 VOWELS = 'aeiou'
 CONSONANTS = 'bcdfghjklmnpqrstvqxyz'
 
+
 class CharEval(object):
     def process(self, string, parser):
         """Updates state depending on first char of string"""
         first_letter = string[0].lower()
         # Set state depending on is first char is a vowel or consonant.
-        if(first_letter in VOWELS):
+        if (first_letter in VOWELS):
             parser.state = Vowel()
-        elif(first_letter in CONSONANTS):
+        elif (first_letter in CONSONANTS):
             parser.state = Consonant()
+        else:
+            # Strip non alpha-characters
+            string = string[1:]
+
         # Return string for for processing.
         return string
+
 
 class Vowel(object):
     def process(self, string, parser):
@@ -43,6 +49,7 @@ class Consonant(object):
 
 class Parser(object):
     """Main, manager-type class"""
+
     def __init__(self):
         # Set default state.
         self.state = CharEval()
@@ -55,5 +62,7 @@ class Parser(object):
         if remaining:
             self.process(remaining)
 
-p = Parser()
-p.process('buttfuck')
+
+if __name__ == '__main__':
+    p = Parser()
+    p.process('Zoe and Gambit are dogs')

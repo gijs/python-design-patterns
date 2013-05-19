@@ -7,8 +7,10 @@ likely needed to be used by many objects and rather then passing around
 references, you can just keep "instantiating" it.
 """
 
+
 class Singleton(object):
     _singleton = None
+
     def __new__(cls, *args, **kwargs):
         if not cls._singleton:
             cls._singleton = super(Singleton, cls).__new__(cls, *args, **kwargs)
@@ -16,9 +18,9 @@ class Singleton(object):
 
 
 if __name__ == '__main__':
-    s1=Singleton()
-    s2=Singleton()
-    if(id(s1)==id(s2)):
+    s1 = Singleton()
+    s2 = Singleton()
+    if (id(s1) == id(s2)):
         print "Same"
     else:
         print "Different"
